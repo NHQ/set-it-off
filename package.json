@@ -1,0 +1,25 @@
+{
+  "name": "set-it-off",
+  "version": "1.0.0",
+  "description": "4 quadrant position for HTML Elements",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:NHQ/set-it-off.git"
+  },
+  "keywords": [
+    "cartesian",
+    "grid",
+    "absolute",
+    "positioning"
+  ],
+  "author": "Johnny Honestly <mostmodernist@gmail.com> (http://johnnyscript.us/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/NHQ/set-it-off/issues"
+  },
+  "homepage": "https://github.com/NHQ/set-it-off"
+}
