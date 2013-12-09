@@ -1,6 +1,6 @@
 var getCSS = require('./getCSS');
 var findPos = require('./findPos');
-
+var prefix = require('./prefix').css
 var elements = {};
 var parent = {center : [window.innerWidth / 2,  window.innerHeight / 2]}
 var e = module.exports
@@ -30,7 +30,8 @@ HTMLElement.prototype.moveTo = function(x, y){
     this.cartesian = [x, y]
     var pos = findPos(this)
     var z = objectify(this)
-    this.style['-webkit-transform'] = 'translate(' + (parent.center[0] + x - (z.width / 2)) + 'px,' + (parent.center[1] - y - (z.height / 2)) + 'px)';
+    this.style['transform'] = 'translate(' + (parent.center[0] + x - (z.width / 2)) + 'px,' + (parent.center[1] - y - (z.height / 2)) + 'px)';
+    this.style[prefix + 'transform'] = 'translate(' + (parent.center[0] + x - (z.width / 2)) + 'px,' + (parent.center[1] - y - (z.height / 2)) + 'px)';
 }
 
 

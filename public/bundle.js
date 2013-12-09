@@ -469,9 +469,11 @@ exports.createContext = Script.createContext = function (context) {
 };
 });
 
+require.define("/set-it-off/package.json",function(require,module,exports,__dirname,__filename,process){module.exports = {"main":"index.js"}});
+
 require.define("/set-it-off/index.js",function(require,module,exports,__dirname,__filename,process){var getCSS = require('./getCSS');
 var findPos = require('./findPos');
-
+var prefix = require('./prefix').css
 var elements = {};
 var parent = {center : [window.innerWidth / 2,  window.innerHeight / 2]}
 var e = module.exports
@@ -501,7 +503,8 @@ HTMLElement.prototype.moveTo = function(x, y){
     this.cartesian = [x, y]
     var pos = findPos(this)
     var z = objectify(this)
-    this.style['-webkit-transform'] = 'translate(' + (parent.center[0] + x - (z.width / 2)) + 'px,' + (parent.center[1] - y - (z.height / 2)) + 'px)';
+    this.style['transform'] = 'translate(' + (parent.center[0] + x - (z.width / 2)) + 'px,' + (parent.center[1] - y - (z.height / 2)) + 'px)';
+    this.style[prefix + 'transform'] = 'translate(' + (parent.center[0] + x - (z.width / 2)) + 'px,' + (parent.center[1] - y - (z.height / 2)) + 'px)';
 }
 
 
@@ -550,6 +553,25 @@ require.define("/set-it-off/findPos.js",function(require,module,exports,__dirnam
   return [curleft,curtop];
 
 }
+});
+
+require.define("/set-it-off/prefix.js",function(require,module,exports,__dirname,__filename,process){// from http://davidwalsh.name/vendor-prefix
+
+var styles = window.getComputedStyle(document.documentElement, '')
+
+var pre = (Array.prototype.slice
+      .call(styles)
+      .join('') 
+      .match(/-(moz|webkit|ms)-/) || (styles.OLink === '' && ['', 'o'])
+    )[1]
+
+var dom = ('WebKit|Moz|MS|O').match(new RegExp('(' + pre + ')', 'i'))[1];
+module.exports = {
+    dom: dom,
+    lowercase: pre,
+    css: '-' + pre + '-',
+    js: pre[0].toUpperCase() + pre.substr(1)
+  }
 });
 
 require.define("/node_modules/getids/package.json",function(require,module,exports,__dirname,__filename,process){module.exports = {"main":"index.js"}});
