@@ -17,8 +17,11 @@ marker.moveTo(0,0) // centers the element
 ```
 This method will translate the element to that position as if the window was a 4 quadrant grid.  Ergo, moveTo(0, 0) will center the element.  Not only that, it positions the element by its center, rather than its top-left corner.  This is for absolute positioned interfaces.
 
+## Method.offset
+The module returns two functions, one is offset([x,y]), where [x,y] is 4-quad normalized point you want.  It returns the correct DOM [x,y].  You can ignore the return because it actually modifies the array arg.
+
 ## Method.setParent
-The module itself returns a method setParent(el, [offSetX, offSetY]) for setting the parent container for your grid, and offsetting the point [0,0]. So you could set [0,0] to be anywhere on your page, or anywhere in relation to the center of any element, such as a canvas.  Note that the offset value is in relation to the center of the element/window.
+The module also returns a method setParent(el, [offSetX, offSetY]) for setting the parent container for your grid, and offsetting the point [0,0]. So you could set [0,0] to be anywhere on your page, or anywhere in relation to the center of any element, such as a canvas.  Note that the offset value is in relation to the center of the element/window.
 
 If you don't set a parent element, it uses the window.
 

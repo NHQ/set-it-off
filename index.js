@@ -22,6 +22,12 @@ e.setParent = function(el, offset){
     }
 }
 
+e.offset = function(x){
+	x[0] = (parent.center[0] + x[0]);
+	x[1] =  (parent.center[1] - x[1]);
+	return x
+}
+
 HTMLElement.prototype.moveTo = function(x, y){
     if('array' == typeof x) {
 	y = x[1];
