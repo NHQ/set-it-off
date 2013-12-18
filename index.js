@@ -27,6 +27,11 @@ e.offset = function(x){
 	x[1] =  (parent.center[1] - x[1]);
 	return x
 }
+HTMLElement.prototype.findPos = function(){
+	var pos = findPos(this)
+	var z = objectofy(this)
+	return [pos[0] + z.width / 2, pos[1] + z.height / 2]
+}
 
 HTMLElement.prototype.moveTo = function(x, y){
     if('array' == typeof x) {
@@ -36,8 +41,11 @@ HTMLElement.prototype.moveTo = function(x, y){
     this.cartesian = [x, y]
     var pos = findPos(this)
     var z = objectify(this)
-    this.style['transform'] = 'translate(' + (parent.center[0] + x - (z.width / 2)) + 'px,' + (parent.center[1] - y - (z.height / 2)) + 'px)';
-    this.style[prefix + 'transform'] = 'translate(' + (parent.center[0] + x - (z.width / 2)) + 'px,' + (parent.center[1] - y - (z.height / 2)) + 'px)';
+    var off = e.offset([x,y])
+    this.style.left = (off[0] - z.width / 2) + 'px';
+    this.style.top = (off[1] - z.height / 2) + 'px';
+//    this.style['transform'] = 'translate(' + (parent.center[0] + x - (z.width / 2)) + 'px,' + (parent.center[1] - y - (z.height / 2)) + 'px)';
+//    this.style[prefix + 'transform'] = 'translate(' + (parent.center[0] + x - (z.width / 2)) + 'px,' + (parent.center[1] - y - (z.height / 2)) + 'px)';
 }
 
 
